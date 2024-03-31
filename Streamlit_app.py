@@ -9,6 +9,10 @@ cnx = st.connection('snowflake')
 session = cnx.session()
 
 # Run a Snowflake query
+
+my_dataframe = session.table("ZENAS_ATHLEISURE_DB.PRODUCTS.CATALOG_FOR_WEBSITE")
+
+st.dataframe(data=my_dataframe, use_container_width=True)
 session.execute("SELECT color_or_style FROM catalog_for_website")
 my_catalog = my_cur.fetchall()
 
