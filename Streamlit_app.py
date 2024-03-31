@@ -5,11 +5,11 @@ import pandas as pd
 st.title("Zena's Amazing Athleisure Catalog")
 
 # Connect to Snowflake
-my_cnx = snowflake.connector.connect(**st.secrets["[connections.snowflake]"])
-my_cur = my_cnx.cursor()
+cnx = st.connection('snowflake')
+session = cnx.session()
 
 # Run a Snowflake query
-my_cur.execute("SELECT color_or_style FROM catalog_for_website")
+session.execute("SELECT color_or_style FROM catalog_for_website")
 my_catalog = my_cur.fetchall()
 
 # Put the data into a DataFrame
@@ -30,7 +30,7 @@ SELECT direct_url, price, size_list, upsell_product_desc
 FROM catalog_for_website 
 WHERE color_or_style = '{}';
 """.format(option)
-my_cur.execute(query)
+session.execute(query)
 df2 = my_cur.fetchone()
 
 if df2:
