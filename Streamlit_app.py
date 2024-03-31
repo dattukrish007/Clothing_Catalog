@@ -5,7 +5,7 @@ import pandas as pd
 st.title("Zena's Amazing Athleisure Catalog")
 
 # Connect to Snowflake
-my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(**st.secrets["[connections.snowflake]"])
 my_cur = my_cnx.cursor()
 
 # Run a Snowflake query
